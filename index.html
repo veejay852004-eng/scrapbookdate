@@ -6,127 +6,73 @@
     <title>Valentine's Day Surprise</title>
     <style>
         body {
-            background: linear-gradient(135deg, #FFB6C1, #800000);
-            color: white;
+            background-color: #3a0a2c;
+            color: #ffffff;
             font-family: Arial, sans-serif;
             overflow: hidden;
-            position: relative;
-        }
-        .container {
-            text-align: center;
-            padding: 50px;
-        }
-        h1 {
-            animation: heartbeat 1s infinite;
-        }
-        @keyframes heartbeat {
-            0%, 20%, 40%, 60%, 100% {
-                transform: scale(1);
-            }
-            10% {
-                transform: scale(1.1);
-            }
-            30% {
-                transform: scale(1.2);
-            }
         }
         .polaroid {
-            display: inline-block;
+            width: 200px;
+            height: 250px;
             background: white;
-            border: 10px solid #FFB6C1;
-            border-radius: 10px;
-            padding: 10px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
             margin: 20px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
             position: relative;
         }
-        .button {
-            background-color: #800000;
-            border: none;
-            color: white;
-            padding: 15px 32px;
-            text-align: center;
-            display: inline-block;
-            font-size: 16px;
-            margin: 4px 2px;
-            cursor: pointer;
-            border-radius: 10px;
-            transition: 0.3s;
+        .falling-petal {
+            position: absolute;
+            animation: fall 5s infinite;
+            top: -50px;
         }
-        .button:hover {
-            background-color: #B22222;
+        @keyframes fall {
+            0% { transform: translateY(0); }
+            100% { transform: translateY(100vh); }
         }
         .surprise-box {
             width: 100px;
             height: 100px;
-            background: #800000;
+            background: #8B0000;
+            transform: rotateX(30deg);
+            border: 2px solid darkred;
+            position: relative;
+            margin: 100px auto;
+        }
+        .ribbon {
+            width: 120%;
+            height: 10px;
+            background: darkred;
             position: absolute;
-            bottom: 20px;
-            left: 50%;
-            transform: translateX(-50%);
-            animation: surprise-move 3s infinite;
+            top: 40px;
+            left: -10%;
+            border-radius: 5px;
         }
-        @keyframes surprise-move {
-            0%, 100% {
-                transform: translate(-50%, 0);
-            }
-            50% {
-                transform: translate(-50%, -20px);
-            }
+        #nahi-button {
+            background-color: #C71585;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            cursor: pointer;
+            font-size: 16px;
         }
-        /* Falling petals animation */
-        .petals {
-            position: absolute;
-            top: -10%;
-            left: 50%;
-            pointer-events: none;
-            animation: fall 5s infinite;
-        }
-        @keyframes fall {
-            0% {top: -10%;}
-            100% {top: 100%;}
+        #nahi-button:hover {
+            background-color: #D1006B;
         }
     </style>
 </head>
 <body>
-    <div class="container">
-        <h1>🌹 Happy Valentine's Day! 🌹</h1>
-        <div class="polaroid">
-            <img src="https://example.com/polaroid.jpg" alt="Polaroid" style="width:100%;">
-        </div>
-        <button class="button" id="haanji">Haanji</button>
-        <button class="button" id="nahi" style="display:none;">Nahi</button>
-        <div class="surprise-box"></div>
+    <h1>Happy Valentine's Day!</h1>
+    <div class="polaroid">
+        <img src="path_to_your_image" alt="Valentine's Memory" style="width:100%; height:auto;">
     </div>
+    <div class="falling-petal">🌸</div>
+    <div class="surprise-box">
+        <div class="ribbon"></div>
+    </div>
+    <button id="nahi-button">Nahi</button>
     <script>
-        let clickCount = 0;
-        const nahiButton = document.getElementById('nahi');
-        const haanjiButton = document.getElementById('haanji');
-
-        haanjiButton.addEventListener('click', function() {
-            // Logic for the "Haanji" button
-            nahiButton.style.display = 'inline-block';
-            clickCount = 0; // Reset click count if clicked
-        });
-
-        nahiButton.addEventListener('click', function() {
-            clickCount++;
-            if (clickCount >= 3) {
-                // Move the Nahi button around
-                const x = Math.random() * (window.innerWidth - 100);
-                const y = Math.random() * (window.innerHeight - 100);
-                nahiButton.style.position = 'absolute';
-                nahiButton.style.left = x + 'px';
-                nahiButton.style.top = y + 'px';
-                clickCount = 0; // Reset click count after moving
-            }
+        document.getElementById('nahi-button').addEventListener('click', function() {
+            alert('Surprise!');
         });
     </script>
-    <div class="petals">
-        <img src="https://example.com/petal.png" alt="Petal" style="width:40px;">
-        <img src="https://example.com/petal.png" alt="Petal" style="width:40px;">
-        <img src="https://example.com/petal.png" alt="Petal" style="width:40px;">
-        <!-- More petal images -->
-    </div>
 </body>
 </html>
